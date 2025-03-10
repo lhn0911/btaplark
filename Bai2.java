@@ -10,9 +10,9 @@ public class Bai2 {
         System.out.print("Nhap so cot m: ");
         int m = scanner.nextInt();
         int[][] arr = new int[n][m];
-        boolean choice = true;
+        boolean tiepTuc = true;
 
-        while (choice) {
+        while (tiepTuc) {
             System.out.println("************** MENU **************");
             System.out.println("1. Nhap gia tri cac phan tu cua mang");
             System.out.println("2. In gia tri cac phan tu trong mang theo ma tran");
@@ -69,7 +69,18 @@ public class Bai2 {
                     System.out.println("\nTong: " + tong);
                     break;
                 case 5:
-                    //
+                    for (int j = 0; j < m; j++) {
+                        for (int i = 0; i < n - 1; i++) {
+                            for (int k = i + 1; k < n; k++) {
+                                if (arr[i][j] > arr[k][j]) {
+                                    int temp = arr[i][j];
+                                    arr[i][j] = arr[k][j];
+                                    arr[k][j] = temp;
+                                }
+                            }
+                        }
+                    }
+                    System.out.println("Mang sau khi sap xep tang dan theo cot:");
                     break;
                 case 6:
                     System.out.println("Cac so nguyen to trong mang:");
@@ -90,13 +101,34 @@ public class Bai2 {
                     System.out.println();
                     break;
                 case 7:
-                    //
+                    for (int i = 0; i < n - 1; i++) {
+                        for (int j = i + 1; j < n; j++) {
+                            if (arr[i][i] < arr[j][j]) {
+                                int temp = arr[i][i];
+                                arr[i][i] = arr[j][j];
+                                arr[j][j] = temp;
+                            }
+                        }
+                    }
+                    System.out.println("Mang sau khi sap xep duong cheo chinh giam dan:");
                     break;
                 case 8:
-                    //
+                    System.out.print("Nhap mang 1 chieu gom " + m + " phan tu: ");
+                    int[] mang1Chieu = new int[m];
+                    for (int i = 0; i < m; i++) {
+                        mang1Chieu[i] = scanner.nextInt();
+                    }
+                    System.out.print("Nhap chi so dong muon chen: ");
+                    int row = scanner.nextInt();
+                    if (row >= 0 && row < n) {
+                        for (int j = 0; j < m; j++) {
+                            arr[row][j] = mang1Chieu[j];
+                        }
+                    }
+                    System.out.println("Mang sau khi chen:");
                     break;
                 case 9:
-                    choice = false;
+                    tiepTuc = false;
                     break;
                 default:
                     System.out.println("Lua chon khong hop le!");

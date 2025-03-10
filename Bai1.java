@@ -7,9 +7,9 @@ public class Bai1 {
         Scanner scanner = new Scanner(System.in);
         int[] mang = new int[100];
         int n = 0;
-        boolean choice = true;
+        boolean tiepTuc = true;
 
-        while (choice) {
+        while (tiepTuc) {
             System.out.println("************** MENU **************");
             System.out.println("1. Nhap gia tri n phan tu cua mang");
             System.out.println("2. In gia tri cac phan tu trong mang");
@@ -97,13 +97,42 @@ public class Bai1 {
                     break;
 
                 case 7:
-                    //
+                    int[] sapXep = new int[n];
+                    int index = 0;
+                    for (int i = 0; i < n; i++) {
+                        if (mang[i] % 2 == 0 && mang[i] % 3 == 0) sapXep[index++] = mang[i];
+                    }
+                    for (int i = 0; i < n; i++) {
+                        if (mang[i] % 3 != 0) sapXep[index++] = mang[i];
+                    }
+                    for (int i = 0; i < n; i++) {
+                        if (mang[i] % 2 != 0 && mang[i] % 3 == 0) sapXep[index++] = mang[i];
+                    }
+                    System.out.println("Mang sau khi sap xep: ");
+                    for (int i = 0; i < n; i++) {
+                        System.out.print(sapXep[i] + " ");
+                    }
+                    System.out.println();
+                    break;
 
                 case 8:
-                   //
+                    System.out.print("Nhap gia tri m: ");
+                    int m = scanner.nextInt();
+                    int i;
+                    for (i = n - 1; i >= 0 && mang[i] < m; i--) {
+                        mang[i + 1] = mang[i];
+                    }
+                    mang[i + 1] = m;
+                    n++;
+                    System.out.println("Mang sau khi chen m: ");
+                    for (i = 0; i < n; i++) {
+                        System.out.print(mang[i] + " ");
+                    }
+                    System.out.println();
+                    break;
 
                 case 9:
-                    choice = false;
+                    tiepTuc = false;
                     break;
 
                 default:
